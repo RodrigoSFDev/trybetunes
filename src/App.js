@@ -33,7 +33,6 @@ class App extends React.Component {
           button={ button }
           onInputChange={ this.onInputChange }
         />
-        <p>TrybeTunes</p>
       </main>
     );
   }
