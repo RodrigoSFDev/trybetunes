@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom';
 import { getUser } from '../services/userAPI';
 import Carregando from './Carregando';
 
@@ -28,6 +29,9 @@ export default class Header extends Component {
     return (
       <header data-testid="header-component">
         {carregando ? <Carregando /> : <div data-testid="header-user-name">{name}</div>}
+        <Link to="/search" data-testid="link-to-search">Search</Link>
+        <Link to="/favorites" data-testid="link-to-favorites">Favorites</Link>
+        <Link to="/profile" data-testid="link-to-profile">Profile</Link>
       </header>
     );
   }
