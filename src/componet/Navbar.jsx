@@ -12,7 +12,6 @@ import ProfileEdit from '../pages/ProfileEdit';
 export default class Navbar extends Component {
   render() {
     const { User, button, onInputChange } = this.props;
-    console.log(User);
     return (
       <div>
         <Switch>
