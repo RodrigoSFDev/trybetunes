@@ -1,26 +1,27 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 import Carregando from './Carregando';
 
 export default class MusicCard extends Component {
   state = {
     fav: false,
-    carregando: false,
+    carregando: true,
   };
+
+  async componentDidMount() {
+    const { trackId } = this.props;
+    const favoriteSongs = await getFavoriteSongs();
+    const isFavorite = favoriteSongs.some((song) => song.trackId === trackId);
+    this.setState({ fav: isFavorite, carregando: false });
+  }
 
   onInputChange = async (event, musica) => {
     const { target: { checked, name } } = event;
-    this.setState({
-      carregando: true,
-    });
-    this.setState({
-      [name]: checked,
-    });
+    this.setState({ carregando: true });
+    this.setState({ [name]: checked });
     await addSong(musica);
-    this.setState({
-      carregando: false,
-    });
+    this.setState({ carregando: false });
   };
 
   render() {
@@ -51,7 +52,6 @@ export default class MusicCard extends Component {
             ) }
           </div>
         </div>
-
       </div>
     );
   }
