@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from './componet/Navbar';
+import './index.css';
 
 class App extends React.Component {
   state = {

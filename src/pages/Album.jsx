@@ -29,20 +29,20 @@ export default class Album extends Component {
 
   render() {
     const { album, musicas } = this.state;
+    const verifMusicas = musicas.length > 0;
     return (
       <div data-testid="page-album">
         <Header />
         <div data-testid="artist-name">{ album.artistName }</div>
         <div data-testid="album-name">{ album.collectionName }</div>
         <section>
-          {musicas.map((musica, index) => (
-
+          {verifMusicas && musicas.map((music, index) => (
             <MusicCard
               key={ index }
-              trackName={ musica.trackName }
-              previewUrl={ musica.previewUrl }
+              trackName={ music.trackName }
+              previewUrl={ music.previewUrl }
+              trackId={ music.trackId }
             />
-
           ))}
         </section>
       </div>
